@@ -1,0 +1,75 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  /* font-size: 10px; */
+
+  /*
+
+  //no mixin
+  @media (max-width: 600px){
+    font-size: 50%;
+  }
+
+  //mixin is used
+  @include respond-phone{ 
+    font-size: 50%;
+  }
+
+  */
+
+  //mixin with argument
+
+  //since we have kept same font sixe for tab-port and phone,
+  //we dont need to write the below breakpoint
+  /* 
+ @include respond(phone) {
+    font-size: 50%;
+  } 
+  */
+
+  //NOTE- THE ORDER IS IMPORTANT. HIGHER WIDTH SHOULD BE PLACED FIRST
+
+  @include respond(tab-land) {
+    font-size: 56.25%;
+  }
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+
+  @include respond(big-desktop) { 
+    font-size: 75%;
+  }
+}
+
+body {
+  padding: 3rem;
+  box-sizing: border-box;
+
+  @include respond(tab-port){
+    padding: 0;
+  }
+
+}
+
+//This method is writing media queries outside selector. This is not ideal as the query can become very large.
+//instead we can write it inside selector and by this we can make many number of small queries instead of one single one
+
+/*
+
+@media (max-width: 660px) {
+  html{
+
+  }
+  body{
+
+  }
+}  
+
+*/
